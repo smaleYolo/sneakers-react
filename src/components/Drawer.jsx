@@ -1,13 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import CartItem from "./CartItem";
+import {AppContext} from "../context";
 
 const Drawer = () => {
+    const {onClickCart} = useContext(AppContext)
+
     return (
-        <div style={{display: 'none'}} className="overlay">
+        <div className="overlay">
             <div className="drawer">
                 <h2 className="d-flex justify-between align-center mb-30">
                     Корзина
-                    <img className="cu-p" src="/img/btn-remove.svg" alt="Remove"/>
+                    <img className="cu-p" src="/img/btn-remove.svg" alt="Remove" onClick={onClickCart}/>
                 </h2>
 
                 <div className="items">

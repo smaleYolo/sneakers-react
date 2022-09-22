@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {AppContext} from "../context";
 
 const Header = () => {
+    const {onClickCart} = useContext(AppContext)
+
     return (
         <header className="d-flex justify-between align-center p-40">
             <div className="d-flex align-center">
@@ -11,7 +14,7 @@ const Header = () => {
                 </div>
             </div>
             <ul className="d-flex">
-                <li className="mr-20 cu-p">
+                <li className="mr-20 cu-p" onClick={onClickCart}>
                     <img src="/img/cart.svg" width={18} height={18} alt="cart"/>
                     <span>1205 руб.</span>
                 </li>
