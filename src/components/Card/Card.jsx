@@ -1,17 +1,21 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from './Card.module.scss';
 
-const Card = ({title, price, imageUrl}) => {
-    const [liked, setLikes] = useState(false)
+const Card = ({title, price, imageUrl, onFavorite, onPlus}) => {
+
+    const [liked, setLiked] = useState(false)
     const [isAdded, setIsAdded] = useState(false)
 
     const onClickPlus = () => {
+        !isAdded && onPlus()
         setIsAdded(prev => !prev)
     }
 
     const onClickLike = () => {
-        setLikes(prev => !prev)
+        !liked && onFavorite()
+        setLiked(prev => !prev)
     }
+
 
     return (
         <div className={styles.card}>
