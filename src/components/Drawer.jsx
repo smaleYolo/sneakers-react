@@ -1,12 +1,38 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import CartItem from "./CartItem";
 import {AppContext} from "../context";
-import CartEmpty from "./CartEmpty";
+import Info from "./Info";
 import CartTotalBlock from "./CartTotalBlock";
+import axios from "axios";
 
-const Drawer = ({onRemove}) => {
-    const {onClickCart, cartItems} = useContext(AppContext)
+const Drawer = () => {
+    const {onClickCart, cartItems, onRemoveItem, setCartItems} = useContext(AppContext)
 
+    const [orderId, setOrderId] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
+    const [orderComplete, setOrderComplete] = useState(false)
+
+    const onClickOrder = async () => {
+        try{
+            setIsLoading(true)
+            const {data} = await axios.post('https://6328b158cc4c264fdee01416.mockapi.io/orders', {
+                items: cartItems,
+            })
+
+            setOrderId(data.id)
+            setOrderComplete(true)
+            setCartItems([])
+
+            for (let i = 0; i < cartItems.length; i++){
+                const item = cartItems[i]
+                axios.delete('https://6328b158cc4c264fdee01416.mockapi.io/cart/' + item.id)
+            }
+
+        } catch (e) {
+            alert('Не удалось создать заказ')
+        }
+        setIsLoading(false)
+    }
 
     return (
         <div className="overlay">
@@ -23,18 +49,25 @@ const Drawer = ({onRemove}) => {
                                 cartItems.map((obj, index) => (
                                     <CartItem
                                         key={index}
-                                        title={obj.title}
-                                        price={obj.price}
-                                        imageUrl={obj.imageUrl}
-                                        onRemove={() => onRemove(obj.id)}
+                                        onRemove={() => onRemoveItem(obj.id)}
+                                        {...obj}
                                     />
                                 ))
                             }
                         </div>
-                        <CartTotalBlock/>
+                        <CartTotalBlock onClickOrder={onClickOrder} isLoading={isLoading}/>
                     </div>
                 ) : (
-                    <CartEmpty/>
+                    <Info
+                        title={orderComplete ? 'Заказ оформлен!' : 'Корзина пустая'}
+                        description={
+                        orderComplete
+                            ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке`
+                            : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
+                    }
+                        imageUrl={orderComplete ? "/img/order-complete.jpeg" : "/img/box-cart-empty.png"}
+                        height={orderComplete ? 150 : 120}
+                    />
                 )}
             </div>
         </div>

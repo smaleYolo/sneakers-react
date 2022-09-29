@@ -121,6 +121,15 @@ header {
   .greenButton {
     position: relative;
 
+    &:disabled{
+      cursor: default;
+      opacity: 0.5;
+
+      img{
+        visibility: hidden;
+      }
+    }
+
     &:hover{
       img {
         transform: translateX(15px);

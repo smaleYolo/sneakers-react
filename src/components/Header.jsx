@@ -3,13 +3,13 @@ import {AppContext} from "../context";
 import {Link} from "react-router-dom";
 
 const Header = () => {
-    const {onClickCart} = useContext(AppContext)
+    const {onClickCart, setSearchValue} = useContext(AppContext)
 
     return (
         <header className="d-flex justify-between align-center p-40">
             <div className="d-flex align-center">
                 <Link to='/'>
-                    <img src="/img/logo.png" width={40} height={40} alt="logo"/>
+                    <img src="/img/logo.png" width={40} height={40} alt="logo" onClick={() => setSearchValue('')}/>
                 </Link>
                 <div>
                     <h3 className="text-uppercase">React Sneakers</h3>

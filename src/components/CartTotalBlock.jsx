@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CartTotalBlock = () => {
+const CartTotalBlock = ({onClickOrder, isLoading}) => {
     return (
         <div className="cartTotalBlock">
             <ul>
@@ -15,7 +15,7 @@ const CartTotalBlock = () => {
                     <b>1074 руб. </b>
                 </li>
             </ul>
-            <button className="greenButton">
+            <button disabled={isLoading} className="greenButton" onClick={onClickOrder}>
                 Оформить заказ <img src="/img/arrow.svg" alt="Arrow"/>
             </button>
         </div>
