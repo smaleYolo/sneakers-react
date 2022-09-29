@@ -65,7 +65,7 @@ header {
 }
 
 .overlay {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
@@ -239,4 +239,23 @@ header {
     }
   }
 
+}
+
+.order {
+  .bordered{
+    border-top: 2px solid #EAEAEA;
+  }
+
+  h2 {
+    border-bottom: 2px solid #EAEAEA;
+  }
+  h3 {
+    border-bottom: 2px solid #EAEAEA;
+    margin-right: 200px;
+
+    span {
+      color: #5C5C5C;
+      font-weight: 600;
+    }
+  }
 }

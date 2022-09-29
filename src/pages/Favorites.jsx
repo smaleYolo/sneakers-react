@@ -17,7 +17,6 @@ const Favorites = () => {
                         .map((item) => (
                             <Card
                                 key={item.id}
-                                favorited={true}
                                 onFavorite={() => onAddToFavorite(item)}
                                 {...item}
                             />

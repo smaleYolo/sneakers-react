@@ -5,7 +5,7 @@ import {AppContext} from "../context";
 import Card from "../components/Card/Card";
 
 const Home = () => {
-    const {items, searchValue, onAddToCart, onAddToFavorite, cartItems, favorites, isLoading} = useContext(AppContext)
+    const {items, searchValue, onAddToCart, onAddToFavorite, isLoading} = useContext(AppContext)
 
     const filteredItems = items.filter((item) =>
         item.title.toLowerCase().includes(searchValue.toLowerCase()))
@@ -27,7 +27,6 @@ const Home = () => {
                                     key={item.id}
                                     onPlus={(obj) => onAddToCart(obj)}
                                     onFavorite={(obj) => onAddToFavorite(obj)}
-                                    favorited={favorites.some(obj => Number(obj.parentId) === Number(item.parentId))}
                                     {...item}
                                 />
                             ))))

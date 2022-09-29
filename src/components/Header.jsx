@@ -3,7 +3,7 @@ import {AppContext} from "../context";
 import {Link} from "react-router-dom";
 
 const Header = () => {
-    const {onClickCart, setSearchValue} = useContext(AppContext)
+    const {onClickCart, setSearchValue, totalPrice} = useContext(AppContext)
 
     return (
         <header className="d-flex justify-between align-center p-40">
@@ -19,7 +19,7 @@ const Header = () => {
             <ul className="d-flex">
                 <li className="mr-20 cu-p" onClick={onClickCart}>
                     <img src="/img/cart.svg" width={18} height={18} alt="cart"/>
-                    <span>1205 руб.</span>
+                    <span>{totalPrice} руб.</span>
                 </li>
                 <Link to='/favorites'>
                     <li className="mr-10">

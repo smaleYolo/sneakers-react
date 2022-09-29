@@ -6,7 +6,7 @@ import CartTotalBlock from "./CartTotalBlock";
 import axios from "axios";
 
 const Drawer = () => {
-    const {onClickCart, cartItems, onRemoveItem, setCartItems} = useContext(AppContext)
+    const {onClickCart, cartItems, onRemoveItem, setCartItems, setTotalPrice} = useContext(AppContext)
 
     const [orderId, setOrderId] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
@@ -14,18 +14,23 @@ const Drawer = () => {
 
     const onClickOrder = async () => {
         try{
+            const orderSum = cartItems.reduce((sum, current) => {
+                return sum+=current.price
+            },0)
             setIsLoading(true)
             const {data} = await axios.post('https://6328b158cc4c264fdee01416.mockapi.io/orders', {
                 items: cartItems,
+                orderPrice: orderSum
             })
 
             setOrderId(data.id)
             setOrderComplete(true)
             setCartItems([])
+            setTotalPrice(prev => prev = 0)
 
             for (let i = 0; i < cartItems.length; i++){
                 const item = cartItems[i]
-                axios.delete('https://6328b158cc4c264fdee01416.mockapi.io/cart/' + item.id)
+                await axios.delete('https://6328b158cc4c264fdee01416.mockapi.io/cart/' + item.id)
             }
 
         } catch (e) {
