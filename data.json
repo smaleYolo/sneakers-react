@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "parentId": 1,
+    "title": "Sneakers 1",
+    "price": 1999,
+    "imageUrl": "/img/sneakers/1.jpeg"
+  },
+  {
+    "id": 2,
+    "parentId": 2,
+    "title": "Sneakers 2",
+    "price": 1229,
+    "imageUrl": "/img/sneakers/2.jpeg"
+  },
+  {
+    "id": 3,
+    "parentId": 3,
+    "title": "Sneakers 3",
+    "price": 3999,
+    "imageUrl": "/img/sneakers/3.jpeg"
+  }
+]

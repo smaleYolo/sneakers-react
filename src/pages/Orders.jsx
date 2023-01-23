@@ -1,13 +1,22 @@
-import React, {useContext} from 'react';
+import React, {useEffect, useState} from 'react';
 import Card from "../components/Card/Card";
 import Info from "../components/Info";
-import {AppContext} from "../context";
+import axios from "axios";
 
 const Orders = () => {
-    const {orders} = useContext(AppContext)
 
-    console.log(orders.map((item) => item.items))
+    const [orders, setOrders] = useState([])
 
+    useEffect(() => {
+        const fetchOrders = async () => {
+            const ordersResponse = await axios.get('https://63ce9362fdfe2764c725fb55.mockapi.io/orders')
+            setOrders(ordersResponse.data)
+        }
+
+        fetchOrders()
+    },[])
+
+    // const {orders} = useContext(AppContext)
 
     return (
         <div className="content p-40 order">

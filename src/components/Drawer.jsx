@@ -18,7 +18,7 @@ const Drawer = () => {
                 return sum+=current.price
             },0)
             setIsLoading(true)
-            const {data} = await axios.post('https://6328b158cc4c264fdee01416.mockapi.io/orders', {
+            const {data} = await axios.post('https://63ce9362fdfe2764c725fb55.mockapi.io/orders', {
                 items: cartItems,
                 orderPrice: orderSum
             })
@@ -30,7 +30,7 @@ const Drawer = () => {
 
             for (let i = 0; i < cartItems.length; i++){
                 const item = cartItems[i]
-                await axios.delete('https://6328b158cc4c264fdee01416.mockapi.io/cart/' + item.id)
+                await axios.delete('https://63ce94b16d27349c2b7157d3.mockapi.io/cart/' + item.id)
             }
 
         } catch (e) {

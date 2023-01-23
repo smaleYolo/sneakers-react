@@ -2,7 +2,7 @@ import './App.scss';
 import React, {useEffect, useState} from "react";
 import {AppContext} from './context'
 import axios from "axios";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes, useLocation, useParams} from "react-router-dom";
 
 import Drawer from "./components/Drawer";
 import Header from "./components/Header";
@@ -25,10 +25,11 @@ function App() {
     useEffect(() => {
         async function fetchData() {
             try{
-                const cartResponse = await axios.get('https://6328b158cc4c264fdee01416.mockapi.io/cart')
-                const favoriteResponse = await axios.get('https://6328b158cc4c264fdee01416.mockapi.io/favorites')
-                const itemsResponse = await axios.get('https://6328b158cc4c264fdee01416.mockapi.io/items')
-                const ordersResponse = await axios.get('https://6328b158cc4c264fdee01416.mockapi.io/orders')
+                const cartResponse = await axios.get('https://63ce94b16d27349c2b7157d3.mockapi.io/cart')
+                const favoriteResponse = await axios.get('https://63ce9362fdfe2764c725fb55.mockapi.io/favorites')
+                const itemsResponse = await axios.get('https://63ce94b16d27349c2b7157d3.mockapi.io/items')
+                const ordersResponse = await axios.get('https://63ce9362fdfe2764c725fb55.mockapi.io/orders')
+
 
 
                 const cartTotal = await cartResponse.data.reduce((sum, current) => {
@@ -60,16 +61,17 @@ function App() {
     const onChangeInput = (e) => setSearchValue(e.target.value);
 
     const onAddToCart = async (obj) => {
+        console.log('here')
         const findItem = cartItems.find((item) => Number(item.parentId) === Number(obj.id))
         try {
             if (findItem) {
                 setTotalPrice(prev => prev - obj.price)
                 setCartItems((prev) => prev.filter((item) => Number(item.parentId) !== Number(obj.id)));
-                await axios.delete(`https://6328b158cc4c264fdee01416.mockapi.io/cart/${findItem.id}`)
+                await axios.delete(`https://63ce94b16d27349c2b7157d3.mockapi.io/cart/${findItem.id}`)
             } else {
                 setTotalPrice(prev => prev + obj.price)
                 setCartItems((prev) => [...prev, obj])
-                const {data} = await axios.post('https://6328b158cc4c264fdee01416.mockapi.io/cart', obj);
+                const {data} = await axios.post('https://63ce94b16d27349c2b7157d3.mockapi.io/cart', obj);
                 setCartItems((prev) => prev.map(item => {
                     if(item.parentId === data.parentId) {
                         return {
@@ -91,7 +93,7 @@ function App() {
         const deletedObj = cartItems.find((item) => Number(item.id) === Number(id))
         try {
             setTotalPrice(prev => prev - deletedObj.price)
-            axios.delete(`https://6328b158cc4c264fdee01416.mockapi.io/cart/${id}`)
+            axios.delete(`https://63ce94b16d27349c2b7157d3.mockapi.io/cart/${id}`)
             setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(id)));
         } catch (e) {
             alert(`Ошибка при удалении из корзины`)
@@ -102,10 +104,10 @@ function App() {
     const onAddToFavorite = async (obj) => {
         try {
             if (favorites.find((favObj) => Number(favObj.id) === Number(obj.id))) {
-                axios.delete(`https://6328b158cc4c264fdee01416.mockapi.io/favorites/${obj.id}`)
+                axios.delete(`https://63ce9362fdfe2764c725fb55.mockapi.io/favorites/${obj.id}`)
                 setFavorites((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
             } else {
-                const {data} = await axios.post('https://6328b158cc4c264fdee01416.mockapi.io/favorites', obj)
+                const {data} = await axios.post('https://63ce9362fdfe2764c725fb55.mockapi.io/favorites', obj)
                 setFavorites((prev) => [...prev, data])
             }
         } catch (e) {

@@ -14,6 +14,7 @@ const Card = ({
                   notOrder = true
               }) => {
 
+
     const {isLoading, isItemAdded, isItemFavorited, favorites} = useContext(AppContext)
 
     // const obj = {id, parentId: id, title, price, imageUrl}
@@ -25,9 +26,6 @@ const Card = ({
     const onClickLike = () => {
         onFavorite({id, parentId, title, price, imageUrl})
     }
-
-    console.log(favorites)
-    console.log(id, isItemFavorited(id))
 
 
     return (
