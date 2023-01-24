@@ -177,7 +177,7 @@ function App() {
                 <Router>
                     <Header />
                     <Routes>
-                        {/*<Route path="/sneakers-react" element={<Home/>}/>*/}
+                        <Route path="/*" element={<Home/>}/>
                         <Route path="/" element={<Home/>}/>
                         <Route path="/favorites" element={<Favorites/>}/>
                         <Route path="/orders" element={<Orders/>}/>
