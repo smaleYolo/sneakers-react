@@ -26,7 +26,7 @@ const Home = () => {
                                 <Card
                                     key={item.id}
                                     onPlus={(obj) => onAddToCart(obj)}
-                                    onFavorite={(obj) => onAddToFavorite(obj)}
+                                    onFavorite={() => onAddToFavorite(item)}
                                     {...item}
                                 />
                             ))))

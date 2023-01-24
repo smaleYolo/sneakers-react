@@ -2,7 +2,7 @@ import './App.scss';
 import React, {useEffect, useState} from "react";
 import {AppContext} from './context'
 import axios from "axios";
-import {BrowserRouter as Router, Route, Routes, useLocation, useParams} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 import Drawer from "./components/Drawer";
 import Header from "./components/Header";
@@ -54,14 +54,11 @@ function App() {
         fetchData()
     },[])
 
-
-
     const onClickCart = () => setCartOpened(prev => !prev);
 
     const onChangeInput = (e) => setSearchValue(e.target.value);
 
     const onAddToCart = async (obj) => {
-        console.log('here')
         const findItem = cartItems.find((item) => Number(item.parentId) === Number(obj.id))
         try {
             if (findItem) {
@@ -102,10 +99,12 @@ function App() {
     }
 
     const onAddToFavorite = async (obj) => {
+        const findedFavorited = favorites.find((favObj) => Number(favObj.parentId) === Number(obj.parentId))
+
         try {
-            if (favorites.find((favObj) => Number(favObj.id) === Number(obj.id))) {
-                axios.delete(`https://63ce9362fdfe2764c725fb55.mockapi.io/favorites/${obj.id}`)
-                setFavorites((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
+            if (favorites.find((favObj) => Number(favObj.parentId) === Number(obj.parentId))) {
+                axios.delete(`https://63ce9362fdfe2764c725fb55.mockapi.io/favorites/${findedFavorited.id}`)
+                setFavorites((prev) => prev.filter((item) => Number(item.parentId) !== Number(obj.parentId)));
             } else {
                 const {data} = await axios.post('https://63ce9362fdfe2764c725fb55.mockapi.io/favorites', obj)
                 setFavorites((prev) => [...prev, data])
