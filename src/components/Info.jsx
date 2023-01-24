@@ -15,7 +15,7 @@ const Info = ({title, description, imageUrl, isBtn = true, width = 120, height =
             <h2>{title}</h2>
             <p className="opacity-6">{description}</p>
             {isBtn && <button className="greenButton" onClick={onClickCart}>
-                <img src="img/arrow-rr.svg" alt="arrow-rr"/>Вернуться назад
+                <img src="sneakers-react/img/arrow-rr.svg" alt="arrow-rr"/>Вернуться назад
             </button>}
         </div>
     );

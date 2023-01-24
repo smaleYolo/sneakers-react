@@ -54,7 +54,7 @@ const Orders = () => {
                         height={70}
                         width={70}
                         description={'У Вас еще нет заказов? Оформите хотя бы один заказ.'}
-                        imageUrl={"img/sad_2.png"}
+                        imageUrl={"sneakers-react/img/sad_2.png"}
                         isBtn={false}
                     />
                 )

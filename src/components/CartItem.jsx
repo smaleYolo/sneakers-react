@@ -11,7 +11,7 @@ const CartItem = ({title, price, imageUrl, onRemove}) => {
                 <p className="mb-5">{title}</p>
                 <b>{price} руб.</b>
             </div>
-            <img className="removeBtn" src="img/btn-remove.svg" alt="Remove" onClick={onRemove}/>
+            <img className="removeBtn" src="sneakers-react/img/btn-remove.svg" alt="Remove" onClick={onRemove}/>
         </div>
     );
 };
