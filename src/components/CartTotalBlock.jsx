@@ -1,6 +1,8 @@
 import React, {useContext} from 'react';
 import {AppContext} from "../context";
 
+import arrowImg from '../assets/icons/arrow.svg'
+
 const CartTotalBlock = ({onClickOrder, isLoading}) => {
     const { totalPrice } = useContext(AppContext)
 
@@ -19,7 +21,7 @@ const CartTotalBlock = ({onClickOrder, isLoading}) => {
                 </li>
             </ul>
             <button disabled={isLoading} className="greenButton" onClick={onClickOrder}>
-                Оформить заказ <img src="sneakers-react/img/arrow.svg" alt="Arrow"/>
+                Оформить заказ <img src={arrowImg} alt="Arrow"/>
             </button>
         </div>
     );

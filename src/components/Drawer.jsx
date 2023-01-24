@@ -5,6 +5,10 @@ import Info from "./Info";
 import CartTotalBlock from "./CartTotalBlock";
 import axios from "axios";
 
+import btnRemove from '../assets/icons/btn-remove.svg'
+import orderCompleteImg from '../assets/icons/order-complete.jpeg'
+import emptyCart from '../assets/icons/box-cart-empty.png'
+
 const Drawer = () => {
     const {onClickCart, cartItems, onRemoveItem, setCartItems, setTotalPrice} = useContext(AppContext)
 
@@ -44,7 +48,7 @@ const Drawer = () => {
             <div className="drawer">
                 <h2 className="d-flex justify-between align-center mb-30">
                     Корзина
-                    <img className="cu-p" src="sneakers-react/img/btn-remove.svg" alt="Close" onClick={onClickCart}/>
+                    <img className="cu-p" src={btnRemove} alt="Close" onClick={onClickCart}/>
                 </h2>
 
                 {cartItems.length ? (
@@ -70,7 +74,7 @@ const Drawer = () => {
                             ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке`
                             : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
                     }
-                        imageUrl={orderComplete ? "sneakers-react/img/order-complete.jpeg" : "sneakers-react/img/box-cart-empty.png"}
+                        imageUrl={orderComplete ? orderCompleteImg : emptyCart}
                         height={orderComplete ? 150 : 120}
                     />
                 )}

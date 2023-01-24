@@ -1,6 +1,8 @@
 import React, {useContext} from 'react';
 import {AppContext} from "../context";
 
+import arrowRr from '../assets/icons/arrow-rr.svg'
+
 const Info = ({title, description, imageUrl, isBtn = true, width = 120, height = 120}) => {
     const {onClickCart} = useContext(AppContext)
 
@@ -15,7 +17,7 @@ const Info = ({title, description, imageUrl, isBtn = true, width = 120, height =
             <h2>{title}</h2>
             <p className="opacity-6">{description}</p>
             {isBtn && <button className="greenButton" onClick={onClickCart}>
-                <img src="sneakers-react/img/arrow-rr.svg" alt="arrow-rr"/>Вернуться назад
+                <img src={arrowRr} alt="arrow-rr"/>Вернуться назад
             </button>}
         </div>
     );

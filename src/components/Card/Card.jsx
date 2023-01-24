@@ -3,6 +3,11 @@ import styles from './Card.module.scss';
 import {AppContext} from "../../context";
 import Skeleton from "../Skeleton";
 
+import heartLiked from '../../assets/icons/heart-liked.svg'
+import heartUnLiked from '../../assets/icons/heart-unliked.svg'
+import btnChecked from '../../assets/icons/btn-checked.svg'
+import btnPlus from '../../assets/icons/btn-plus.svg'
+
 const Card = ({
                   id,
                   parentId,
@@ -36,7 +41,7 @@ const Card = ({
             ) : (
                 <>
                     {notOrder && <div className={styles.favorite} onClick={onClickLike}>
-                        <img src={isItemFavorited(parentId) ? "sneakers-react/img/heart-liked.svg" : "sneakers-react/img/heart-unliked.svg"} alt="Unliked"/>
+                        <img src={isItemFavorited(parentId) ? heartLiked : heartUnLiked} alt="Unliked"/>
                     </div>}
                     <img width={133} height={112} src={imageUrl} alt=""/>
                     <h5>{title}</h5>
@@ -46,7 +51,7 @@ const Card = ({
                             <b>{price} руб.</b>
                         </div>
                         {notOrder && <div className="button" onClick={onClickPlus}>
-                            <img src={isItemAdded(id) ? "sneakers-react/img/btn-checked.svg" : "sneakers-react/img/btn-plus.svg"} alt="add"/>
+                            <img src={isItemAdded(id) ? btnChecked : btnPlus} alt="add"/>
                         </div>}
                     </div>
                 </>
