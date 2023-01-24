@@ -19,7 +19,7 @@ const CartTotalBlock = ({onClickOrder, isLoading}) => {
                 </li>
             </ul>
             <button disabled={isLoading} className="greenButton" onClick={onClickOrder}>
-                Оформить заказ <img src="/img/arrow.svg" alt="Arrow"/>
+                Оформить заказ <img src="img/arrow.svg" alt="Arrow"/>
             </button>
         </div>
     );

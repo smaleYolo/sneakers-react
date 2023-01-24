@@ -26,7 +26,7 @@ const Favorites = () => {
                             height={70}
                             width={70}
                             description={'Вы ничего не добавляли в закладки'}
-                            imageUrl={"/img/sad.png"}
+                            imageUrl={"img/sad.png"}
                             isBtn={false}
                         />
                     )

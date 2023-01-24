@@ -44,7 +44,7 @@ const Drawer = () => {
             <div className="drawer">
                 <h2 className="d-flex justify-between align-center mb-30">
                     Корзина
-                    <img className="cu-p" src="/img/btn-remove.svg" alt="Close" onClick={onClickCart}/>
+                    <img className="cu-p" src="img/btn-remove.svg" alt="Close" onClick={onClickCart}/>
                 </h2>
 
                 {cartItems.length ? (
@@ -70,7 +70,7 @@ const Drawer = () => {
                             ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке`
                             : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
                     }
-                        imageUrl={orderComplete ? "/img/order-complete.jpeg" : "/img/box-cart-empty.png"}
+                        imageUrl={orderComplete ? "img/order-complete.jpeg" : "img/box-cart-empty.png"}
                         height={orderComplete ? 150 : 120}
                     />
                 )}
